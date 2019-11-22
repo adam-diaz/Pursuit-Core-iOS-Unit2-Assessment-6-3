@@ -32,9 +32,9 @@ In the project is also an empty Storyboard.  You have no existing View Controlle
 
 Load `allTheCrayons` into a `Table View`.  
 
-- The name in each row should be the `Crayon`'s **name**.  
-- The subtitle in each row should be the `Crayon`'s **hex** value.  
-- The background color of each row should be the `Crayon`'s color (derived from the `Crayon`'s **red**, **green** and **blue**.  
+- The name in each row should be the `Crayon`'s **name**.  (done)
+- The subtitle in each row should be the `Crayon`'s **hex** value.  (done)
+- The background color of each row should be the `Crayon`'s color (not) (derived from the `Crayon`'s **red**, **green** and **blue**.  
 
 When the user selects a row, you should segue to a Detail View.   The Detail view should have:
 

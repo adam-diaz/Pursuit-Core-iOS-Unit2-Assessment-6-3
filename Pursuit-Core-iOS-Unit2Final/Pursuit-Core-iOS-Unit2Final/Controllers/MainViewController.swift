@@ -50,10 +50,14 @@ extension MainViewController: UITableViewDataSource {
         
         cell.textLabel?.text = crayon.name
         cell.detailTextLabel?.text = crayon.hex
-//        cell.backgroundColor? = figure out a way to change the color of each individual row
+
+        //        cell.backgroundColor? = UIColor(named: Crayon.init(name: "Almond", red: 239, green: 222, blue: 205, hex: "#EFDECD"))
+        
+
+        //        cell.backgroundColor? = figure out a way to change the color of each individual row
         
         return cell
     }
     
-  
+
 }
