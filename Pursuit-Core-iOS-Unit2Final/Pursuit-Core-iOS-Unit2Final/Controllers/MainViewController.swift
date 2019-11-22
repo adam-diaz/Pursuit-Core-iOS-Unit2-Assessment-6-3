@@ -54,7 +54,7 @@ extension MainViewController: UITableViewDataSource {
         //        cell.backgroundColor? = UIColor(named: Crayon.init(name: "Almond", red: 239, green: 222, blue: 205, hex: "#EFDECD"))
         
 
-        //        cell.backgroundColor? = figure out a way to change the color of each individual row
+        cell.backgroundColor? = UIColor(displayP3, Red: green,: blue: alpha: )
         
         return cell
     }
