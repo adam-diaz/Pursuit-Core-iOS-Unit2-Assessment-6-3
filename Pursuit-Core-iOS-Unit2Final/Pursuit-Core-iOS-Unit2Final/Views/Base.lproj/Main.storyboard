@@ -44,7 +44,7 @@
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
-                                            <segue destination="dbP-ZD-OLn" kind="show" identifier="colorView" id="93N-wV-tnH"/>
+                                            <segue destination="dbP-ZD-OLn" kind="show" identifier="detailView" id="93N-wV-tnH"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

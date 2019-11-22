@@ -26,8 +26,19 @@ class MainViewController: UIViewController {
     
   }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "detailView" {
+            guard let colorDVC = segue.destination as? DetailViewController else {
+                fatalError("unexpected segue")
+            }
+            guard let selectedIndexPath = tableView.indexPathForSelectedRow else {
+                fatalError("no row selected.")
+            }
+            colorDVC.detailColorVC = crayola[selectedIndexPath.row]
+        }
+    }
 
-    // prepare(for: ) goes here
+    
     
     func loadData() {
         crayola = Crayon.allTheCrayons
@@ -50,13 +61,12 @@ extension MainViewController: UITableViewDataSource {
         
         cell.textLabel?.text = crayon.name
         cell.detailTextLabel?.text = crayon.hex
-
-        //        cell.backgroundColor? = UIColor(named: Crayon.init(name: "Almond", red: 239, green: 222, blue: 205, hex: "#EFDECD"))
-        
-
         cell.backgroundColor? = UIColor(displayP3Red: CGFloat(crayon.red / 255), green: CGFloat(crayon.green / 255), blue: CGFloat(crayon.blue / 255), alpha: 1.0)
         
-
+        if crayon.name == "Black" {
+            cell.textLabel?.textColor = .white
+            cell.detailTextLabel?.textColor = .white
+        }
         
         return cell
     }

@@ -30,36 +30,39 @@ class DetailViewController: UIViewController {
     
     @IBOutlet weak var alphaStepperControl: UIStepper!
     
-    var redValue: Float = 215 {
+    var detailColorVC: Crayon!
+    
+    var redValue: Float = 0.5 {
         didSet {
-            redLabel.text = String(format: "%0.f", redSliderControl.value)
+            redLabel.text = String(format: "%.01f", redSliderControl.value)
         }
     }
     
     
-    var greenValue: Float = 130 {
+    var greenValue: Float = 0.5 {
         didSet {
-            greenLabel.text = String(format: "%0.f", greenSliderControl.value)
+            greenLabel.text = String(format: "%.01f", greenSliderControl.value)
         }
     }
     
     
-    var blueValue: Float = 20 {
+    var blueValue: Float = 0.5 {
         didSet {
-            blueLabel.text = String(format: "%0.f", blueSliderControl.value)
+            blueLabel.text = String(format: "%.01f", blueSliderControl.value)
         }
     }
     
     var alphaValue: Double = 1.0 {
         didSet {
-            alphaLabel.text = String(format: "%0.f", alphaStepperControl.value)
+            alphaLabel.text = String(format: "%.01f", alphaStepperControl.value)
         }
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        imageView.backgroundColor = .black
+        colorLabel?.text = detailColorVC.name
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(detailColorVC.red / 255), green: CGFloat(detailColorVC.green / 255), blue: CGFloat(detailColorVC.blue / 255), alpha: 1.0)
         redConfigureSlider()
         greenConfigureSlider()
         blueConfigureSlider()
@@ -67,21 +70,21 @@ class DetailViewController: UIViewController {
     }
     
     func redConfigureSlider() {
-        redSliderControl.minimumValue = 0
-        redSliderControl.maximumValue = 255
-        redSliderControl.value = redValue
+        redSliderControl.minimumValue = 0.0
+        redSliderControl.maximumValue = 1.0
+        redSliderControl.value = Float(detailColorVC.red / 255)
     }
     
     func greenConfigureSlider() {
-        greenSliderControl.minimumValue = 0
-        greenSliderControl.maximumValue = 255
-        greenSliderControl.value = greenValue
+        greenSliderControl.minimumValue = 0.0
+        greenSliderControl.maximumValue = 1.0
+        greenSliderControl.value = Float(detailColorVC.green / 255)
     }
     
     func blueConfigureSlider() {
-        blueSliderControl.minimumValue = 0
-        blueSliderControl.maximumValue = 255
-        blueSliderControl.value = blueValue
+        blueSliderControl.minimumValue = 0.0
+        blueSliderControl.maximumValue = 1.0
+        blueSliderControl.value = Float(detailColorVC.blue / 255)
     }
     
     func alphaStepper() {
@@ -99,19 +102,23 @@ class DetailViewController: UIViewController {
     
     @IBAction func redSliderChanged(_ sender: UISlider) {
         redValue = sender.value
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
     }
     
     @IBAction func greenSliderChanged(_ sender: UISlider) {
         greenValue = sender.value
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
     }
     
     @IBAction func blueSliderChanged(_ sender: UISlider) {
         blueValue = sender.value
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
     }
     
     
     @IBAction func alphaStepperChanged(_ sender: UIStepper) {
         alphaValue = sender.value
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: CGFloat(alphaValue))
         
     }
     

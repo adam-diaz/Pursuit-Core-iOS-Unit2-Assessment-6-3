@@ -41,6 +41,6 @@ class Crayon {
   ]
 }
 
-// divide the value by 255
+
 
 
