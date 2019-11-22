@@ -32,23 +32,23 @@ class DetailViewController: UIViewController {
     
     var detailColorVC: Crayon!
     
-    var redValue: Float = 0.5 {
+    var redValue: Float = 0.0 {
         didSet {
-            redLabel.text = String(format: "%.01f", redSliderControl.value)
+            redLabel.text = String(format: "%.02f", redSliderControl.value)
         }
     }
     
     
-    var greenValue: Float = 0.5 {
+    var greenValue: Float = 0.0 {
         didSet {
-            greenLabel.text = String(format: "%.01f", greenSliderControl.value)
+            greenLabel.text = String(format: "%.02f", greenSliderControl.value)
         }
     }
     
     
-    var blueValue: Float = 0.5 {
+    var blueValue: Float = 0.0 {
         didSet {
-            blueLabel.text = String(format: "%.01f", blueSliderControl.value)
+            blueLabel.text = String(format: "%.02f", blueSliderControl.value)
         }
     }
     
@@ -62,7 +62,9 @@ class DetailViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         colorLabel?.text = detailColorVC.name
+        imageView.backgroundColor = UIColor(displayP3Red: CGFloat(detailColorVC.red / 255), green: CGFloat(detailColorVC.green / 255), blue: CGFloat(detailColorVC.blue / 255), alpha: 1.0)
         self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(detailColorVC.red / 255), green: CGFloat(detailColorVC.green / 255), blue: CGFloat(detailColorVC.blue / 255), alpha: 1.0)
+        labelValues()
         redConfigureSlider()
         greenConfigureSlider()
         blueConfigureSlider()
@@ -94,37 +96,49 @@ class DetailViewController: UIViewController {
         alphaStepperControl.value = alphaValue
     }
     
+    func labelValues() {
+        redLabel.text = String(format: "%.02f", Float(detailColorVC.red / 255))
+        greenLabel.text = String(format: "%.02f", Float(detailColorVC.green / 255))
+        blueLabel.text = String(format: "%.02f", Float(detailColorVC.blue / 255))
+        alphaLabel.text = String(alphaValue)
+    }
     
-    
-    
-    
-    
+    func reset() {
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(detailColorVC.red / 255), green: CGFloat(detailColorVC.green / 255), blue: CGFloat(detailColorVC.blue / 255), alpha: 1.0)
+        labelValues()
+        redSliderControl.value = Float(detailColorVC.red / 255)
+        greenSliderControl.value = Float(detailColorVC.green / 255)
+        blueSliderControl.value = Float(detailColorVC.blue / 255)
+        alphaStepperControl.value = 1.0
+        alphaLabel.text = String(alphaStepperControl.value)
+    }
     
     @IBAction func redSliderChanged(_ sender: UISlider) {
         redValue = sender.value
-        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenSliderControl.value), blue: CGFloat(blueSliderControl.value), alpha: CGFloat(alphaStepperControl.value))
     }
     
     @IBAction func greenSliderChanged(_ sender: UISlider) {
-        greenValue = sender.value
-        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
+        greenValue = sender.value //20
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redSliderControl.value), green: CGFloat(greenValue), blue: CGFloat(blueSliderControl.value), alpha: CGFloat(alphaStepperControl.value))
     }
     
     @IBAction func blueSliderChanged(_ sender: UISlider) {
         blueValue = sender.value
-        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: 1.0)
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redSliderControl.value), green: CGFloat(greenSliderControl.value), blue: CGFloat(blueValue), alpha: CGFloat(alphaStepperControl.value))
     }
     
     
     @IBAction func alphaStepperChanged(_ sender: UIStepper) {
         alphaValue = sender.value
-        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redValue), green: CGFloat(greenValue), blue: CGFloat(blueValue), alpha: CGFloat(alphaValue))
+        self.view.backgroundColor? = UIColor(displayP3Red: CGFloat(redSliderControl.value), green: CGFloat(greenSliderControl.value), blue: CGFloat(blueSliderControl.value), alpha: CGFloat(alphaValue))
         
     }
     
     
     @IBAction func resetButtonPressed(_ sender: UIButton) {
-    }
+        reset()
+            }
     
 }
 

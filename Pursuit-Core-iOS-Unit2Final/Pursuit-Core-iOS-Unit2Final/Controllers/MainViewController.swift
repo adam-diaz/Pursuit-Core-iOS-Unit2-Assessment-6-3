@@ -37,8 +37,6 @@ class MainViewController: UIViewController {
             colorDVC.detailColorVC = crayola[selectedIndexPath.row]
         }
     }
-
-    
     
     func loadData() {
         crayola = Crayon.allTheCrayons
@@ -61,6 +59,7 @@ extension MainViewController: UITableViewDataSource {
         
         cell.textLabel?.text = crayon.name
         cell.detailTextLabel?.text = crayon.hex
+        cell.selectedBackgroundView?.backgroundColor = UIColor.clear
         cell.backgroundColor? = UIColor(displayP3Red: CGFloat(crayon.red / 255), green: CGFloat(crayon.green / 255), blue: CGFloat(crayon.blue / 255), alpha: 1.0)
         
         if crayon.name == "Black" {
